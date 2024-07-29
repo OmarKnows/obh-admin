@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-auth-layout',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MatGridListModule],
   templateUrl: './auth-layout.component.html',
   styleUrl: './auth-layout.component.scss',
 })
-export class AuthLayoutComponent {}
+export class AuthLayoutComponent {
+  loginBannerPath = '/login-banner.webp';
+}
