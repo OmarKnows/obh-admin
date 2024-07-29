@@ -5,6 +5,12 @@ import { RootLayoutComponent } from './layouts/root-layout/root-layout.component
 import { UsersComponent } from './modules/users/users.component';
 import { EmployeesComponent } from './modules/employees/employees.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { CaseTypesComponent } from './modules/case-types/case-types.component';
+import { CourtsComponent } from './modules/courts/courts.component';
+import { BranchesComponent } from './modules/branches/branches.component';
+import { RegionsComponent } from './modules/regions/regions.component';
+import { ServicesComponent } from './modules/services/services.component';
+import { RolesComponent } from './modules/roles/roles.component';
 
 export const routes: Routes = [
   {
@@ -20,7 +26,13 @@ export const routes: Routes = [
     component: RootLayoutComponent,
     children: [
       { path: 'employees', component: EmployeesComponent },
-      { path: 'users ', component: UsersComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'roles', component: RolesComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'regions', component: RegionsComponent },
+      { path: 'branches', component: BranchesComponent },
+      { path: 'courts', component: CourtsComponent },
+      { path: 'case-types', component: CaseTypesComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },
