@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <img class="image" [src]="logoSrc" />
+  </div>
+  <mat-nav-list class="nav-container">
+    @for (navItem of navItems; track $index) {
+    <a mat-list-item [routerLink]="navItem.route">
+      <div class="nav-item primary-text">
+        <mat-icon>{{ navItem.icon }}</mat-icon>
+        <div>{{ navItem.label }}</div>
+      </div>
+    </a>
+    }
+    <a class="bottom" mat-list-item [routerLink]="logoutNav.route">
+      <div class="nav-item primary-text">
+        <mat-icon>{{ logoutNav.icon }}</mat-icon>
+        <div>{{ logoutNav.label }}</div>
+      </div>
+    </a>
+  </mat-nav-list>
+</div>

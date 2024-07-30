@@ -1,2 +1,6 @@
-<p>root-layout works!</p>
-<router-outlet />
+<mat-sidenav-container class="container">
+  <mat-sidenav class="side-bar" mode="side" opened>
+    <app-side-bar />
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>
