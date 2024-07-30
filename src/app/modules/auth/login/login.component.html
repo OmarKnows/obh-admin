@@ -1,1 +1,22 @@
-<p>login</p>
+<div class="sign-in-container">
+  <div class="icon-container">
+    <mat-icon fontIcon="lock" class="material-icons-outlined" />
+  </div>
+  <h3>Sign In</h3>
+  <form class="form-container">
+    <mat-form-field class="width-full">
+      <mat-label>Email</mat-label>
+      <input matInput class="width-full" />
+      <mat-icon matPrefix fontIcon="mail" class="material-icons-outlined" />
+    </mat-form-field>
+    <mat-form-field class="width-full">
+      <mat-label>Password</mat-label>
+      <input matInput class="width-full" type="password" />
+      <mat-icon matPrefix fontIcon="lock" class="material-icons-outlined" />
+    </mat-form-field>
+    <button mat-flat-button class="width-full">
+      <mat-icon fontIcon="lock_open" class="material-icons-outlined" />
+      Sign In
+    </button>
+  </form>
+</div>

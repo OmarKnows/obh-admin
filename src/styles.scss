@@ -1,40 +1,156 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@use "sass:map";
+@use "@angular/material" as mat;
 @include mat.core();
 
-// Define the theme object.
-$obh-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
+$_palettes: (
+  primary: (
+    0: #000000,
+    10: #002116,
+    20: #003828,
+    25: #004431,
+    30: #00513b,
+    35: #005e45,
+    40: #006c4f,
+    50: #008865,
+    60: #24a37c,
+    70: #49bf96,
+    80: #68dbb0,
+    90: #85f8cb,
+    95: #bcffe1,
+    98: #e7fff2,
+    99: #f4fff7,
+    100: #ffffff,
   ),
-  density: (
-    scale: 0,
-  )
-));
+  secondary: (
+    0: #000000,
+    10: #092017,
+    20: #1f352b,
+    25: #2a4036,
+    30: #354b41,
+    35: #40574d,
+    40: #4c6358,
+    50: #647c71,
+    60: #7e968a,
+    70: #98b1a4,
+    80: #b3ccbf,
+    90: #cfe9da,
+    95: #ddf7e9,
+    98: #e7fff2,
+    99: #f4fff7,
+    100: #ffffff,
+  ),
+  tertiary: (
+    0: #000000,
+    10: #001f2a,
+    20: #093544,
+    25: #184050,
+    30: #254b5c,
+    35: #325768,
+    40: #3e6374,
+    50: #577c8e,
+    60: #7196a8,
+    70: #8bb1c4,
+    80: #a6cce0,
+    90: #c2e8fd,
+    95: #e0f4ff,
+    98: #f4faff,
+    99: #fafcff,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #191c1a,
+    20: #2e312f,
+    25: #393c3a,
+    30: #444845,
+    35: #505351,
+    40: #5c5f5c,
+    50: #757875,
+    60: #8e918e,
+    70: #a9aca9,
+    80: #c5c7c4,
+    90: #e1e3df,
+    95: #eff1ee,
+    98: #f8faf6,
+    99: #fbfdf9,
+    100: #ffffff,
+    4: #0c0f0d,
+    6: #111412,
+    12: #1d201e,
+    17: #272b29,
+    22: #323633,
+    24: #373a38,
+    87: #d8dbd7,
+    92: #e7e9e5,
+    94: #eceeeb,
+    96: #f2f4f0,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #151d19,
+    20: #2a322e,
+    25: #343d39,
+    30: #404944,
+    35: #4b554f,
+    40: #57615b,
+    50: #707974,
+    60: #89938d,
+    70: #a4ada7,
+    80: #bfc9c2,
+    90: #dbe5de,
+    95: #e9f3ec,
+    98: #f2fcf5,
+    99: #f5fff7,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes, neutral-variant),
+  error: map.get($_palettes, error),
+);
+$_primary: map.merge(map.get($_palettes, primary), $_rest);
+$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
+
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $_primary,
+      tertiary: $_tertiary,
+    ),
+  )
+);
+
 :root {
-  @include mat.all-component-themes($obh-theme);
+  @include mat.all-component-themes($light-theme);
 }
 
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($obh-theme);
-
-// Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($obh-theme);
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
