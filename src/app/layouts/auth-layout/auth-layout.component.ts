@@ -10,5 +10,5 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrl: './auth-layout.component.scss',
 })
 export class AuthLayoutComponent {
-  loginBannerPath = '/login-banner.webp';
+  loginBannerPath = 'assets/images/login-banner.webp';
 }
