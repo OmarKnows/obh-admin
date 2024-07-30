@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import {
+  IsActiveMatchOptions,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { INavItem } from '../../interfaces/nav-item.model';
 import { ROUTES } from '../../../constants/routes';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
   standalone: true,
-  imports: [MatListModule, MatIconModule, RouterLink],
+  imports: [MatListModule, MatIconModule, RouterLink, RouterLinkActive],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss',
 })
@@ -29,4 +34,17 @@ export class SideBarComponent {
     { icon: 'account_balance', label: 'Courts', route: ROUTES.COURTS },
     { icon: 'cases', label: 'Case Types', route: ROUTES.CASE_TYPES },
   ];
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  readonly myMatchOptions: IsActiveMatchOptions = {
+    queryParams: 'ignored',
+    matrixParams: 'exact',
+    paths: 'exact',
+    fragment: 'exact',
+  };
+
+  isActive(route: string): boolean {
+    return this.router.isActive(this.router.createUrlTree([route]), true);
+  }
 }
