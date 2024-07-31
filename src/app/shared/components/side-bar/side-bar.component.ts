@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { INavItem } from '../../interfaces/nav-item.model';
 import { ROUTES } from '../../../constants/routes';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -18,12 +18,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './side-bar.component.scss',
 })
 export class SideBarComponent {
+  constructor(private router: Router) {}
+
   logoSrc = 'assets/logo.png';
-  logoutNav: INavItem = {
-    icon: 'logout',
-    label: 'Logout',
-    route: `${ROUTES.AUTH}/${ROUTES.LOGIN}`,
-  };
   navItems: INavItem[] = [
     { icon: 'work', label: 'Employees', route: ROUTES.EMPLOYEES },
     { icon: 'person', label: 'Users', route: ROUTES.USERS },
@@ -34,10 +31,12 @@ export class SideBarComponent {
     { icon: 'account_balance', label: 'Courts', route: ROUTES.COURTS },
     { icon: 'cases', label: 'Case Types', route: ROUTES.CASE_TYPES },
   ];
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
-  readonly myMatchOptions: IsActiveMatchOptions = {
+  logoutNav: INavItem = {
+    icon: 'logout',
+    label: 'Logout',
+    route: `${ROUTES.AUTH}/${ROUTES.LOGIN}`,
+  };
+  myMatchOptions: IsActiveMatchOptions = {
     queryParams: 'ignored',
     matrixParams: 'exact',
     paths: 'exact',
@@ -45,6 +44,9 @@ export class SideBarComponent {
   };
 
   isActive(route: string): boolean {
-    return this.router.isActive(this.router.createUrlTree([route]), true);
+    return this.router.isActive(
+      this.router.createUrlTree([route]),
+      this.myMatchOptions
+    );
   }
 }
